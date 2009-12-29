@@ -1,6 +1,1 @@
-Ruby bindings to bsdiff and bspatch
-
-    BSDiff.diff('ext/b0', 'ext/b1', 'p0')
-
-    # apply patch to bspatch.o as bspatch2.o
-    BSDiff.patch('ext/b0', 'b3', 'p0')
+Ruby bindings to librsync.
