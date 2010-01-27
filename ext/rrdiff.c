@@ -23,7 +23,6 @@ static VALUE rrdiff_delta(VALUE mod, VALUE oldfile, VALUE newfile, VALUE patchfi
   return Qtrue;
 }
 
-/*
 static VALUE rrdiff_patch(VALUE mod, VALUE oldfile, VALUE newfile, VALUE patchfile)
 {
   if( bspatch_files(StringValuePtr(oldfile), StringValuePtr(newfile), StringValuePtr(patchfile)) ) {
@@ -31,7 +30,6 @@ static VALUE rrdiff_patch(VALUE mod, VALUE oldfile, VALUE newfile, VALUE patchfi
   }
   return Qtrue;
 }
-*/
 
 /* main entry point */
 void Init_RRDiff()
