@@ -34,7 +34,8 @@ end
 desc "Compile the shared object"
 task :compile => [BSDIFF_SO]
 
-Rake::TestTask.new(:test) do |t|
-  t.test_files = FileList['test/test.rb']
-  t.verbose = false
-end
+# FIXME: Rspec
+#Rake::TestTask.new(:test) do |t|
+#  t.test_files = FileList['test/test.rb']
+#  t.verbose = false
+#end

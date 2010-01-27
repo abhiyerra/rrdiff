@@ -15,7 +15,6 @@ static VALUE rrdiff_signature(VALUE mod, VALUE old_file, VALUE sig_file)
   return rs_sig_file(basis, signature, RS_DEFAULT_BLOCK_LEN, RS_DEFAULT_STRONG_LEN, &stats);
 }
 
-/*
 static VALUE rrdiff_delta(VALUE mod, VALUE oldfile, VALUE newfile, VALUE patchfile)
 {
   if( bspatch_files(StringValuePtr(oldfile), StringValuePtr(newfile), StringValuePtr(patchfile)) ) {
@@ -24,6 +23,7 @@ static VALUE rrdiff_delta(VALUE mod, VALUE oldfile, VALUE newfile, VALUE patchfi
   return Qtrue;
 }
 
+/*
 static VALUE rrdiff_patch(VALUE mod, VALUE oldfile, VALUE newfile, VALUE patchfile)
 {
   if( bspatch_files(StringValuePtr(oldfile), StringValuePtr(newfile), StringValuePtr(patchfile)) ) {
