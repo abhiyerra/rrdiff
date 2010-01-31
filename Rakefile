@@ -1,5 +1,7 @@
+require 'rubygems'
 require 'rake/clean'
-require 'rake/testtask'
+require 'spec/rake/spectask'
+require 'spec/ruby'
 
 CLEAN.include '**/*.o'
 CLEAN.include "**/*.#{Config::MAKEFILE_CONFIG['DLEXT']}"
@@ -34,8 +36,6 @@ end
 desc "Compile the shared object"
 task :compile => [BSDIFF_SO]
 
-# FIXME: Rspec
-#Rake::TestTask.new(:test) do |t|
-#  t.test_files = FileList['test/test.rb']
-#  t.verbose = false
-#end
+Spec::Rake::SpecTask.new(:spec) do |t|
+  t.spec_files = FileList['test/*.rb']
+end
