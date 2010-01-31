@@ -5,6 +5,9 @@ require 'spec/ruby'
 
 CLEAN.include '**/*.o'
 CLEAN.include "**/*.#{Config::MAKEFILE_CONFIG['DLEXT']}"
+CLEAN.include 'test/patchedfile'
+CLEAN.include 'test/deltafile'
+CLEAN.include 'test/sigfile'
 CLOBBER.include '**/Makefile'
 CLOBBER.include '**/bsdiff_config.h'
 CLOBBER.include '**/mkmf.log'
@@ -36,6 +39,11 @@ end
 desc "Compile the shared object"
 task :compile => [BSDIFF_SO]
 
-Spec::Rake::SpecTask.new(:spec) do |t|
-  t.spec_files = FileList['test/*.rb']
+desc "Run the project rspec"
+task :spec do
+  Dir.chdir('test') do
+    Spec::Rake::SpecTask.new(:rrdiff) do |t|
+      t.spec_files = FileList['rrdiff_spec.rb']
+    end
+  end
 end

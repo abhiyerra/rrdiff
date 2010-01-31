@@ -27,8 +27,4 @@ describe RRDiff do
 
     correct_patched_file.read.should == new_patched_file.read
   end
-
-  after(:all) do
-    File.unlink("patchedfile", "deltafile", "sigfile")
-  end
 end
