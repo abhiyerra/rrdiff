@@ -1,1 +1,46 @@
-Ruby bindings to librsync.
+rrdiff - Ruby bindings to librsync/rdiff.
+
+Lets say you have two files oldfile and newfile where newfile
+is a modified version of oldfile. We want to be able to apply
+the change to oldfile such that it becomes newfile.
+
+The first process is to create a signature for the oldfile. The
+parameters are the original file and where you want to store
+the signature file.
+
+    RRDiff.signature("oldfile", "sigfile")
+
+Then from the newfile and the sigfile generate a delta. Deltafile
+is where the delta is stored.
+
+    RRDiff.delta("newfile", "sigfile", "deltafile")
+
+Finally, apply the deltafile to the oldfile to create the patchedfile
+which should be equivalent to newfile.
+
+    RRDiff.patch("oldfile", "deltafile", "patchedfile")
+
+
+
+(The MIT License)
+ 
+Copyright (c) 2005-2010 The RSpec Development Team
+ 
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+ 
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+ 
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
