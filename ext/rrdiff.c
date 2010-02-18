@@ -76,7 +76,7 @@ static VALUE rrdiff_patch(VALUE mod, VALUE old_file, VALUE delta_file, VALUE pat
 }
 
 /* main entry point */
-void Init_RRDiff()
+void Init_rrdiff()
 {
     RRDiff = rb_define_module("RRDiff");
 
