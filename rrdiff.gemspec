@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.description = %q{Ruby bindings to librsync which provides rdiff.}
   s.email = %q{ykabhinav@gmail.com}
   s.extensions = ["ext/extconf.rb"]
-  s.files = ["ext/rrdiff.c", "rrdiff_config.h", "ext/librsync.h", "ext/librsync-config.h"]
+  s.files = ["ext/rrdiff.c", "ext/rrdiff_config.h", "ext/librsync.h", "ext/librsync-config.h"]
   s.has_rdoc = true
   s.homepage = %q{http://github.com/abhiyerra/rrdiff}
   s.rdoc_options = ["--inline-source", "--charset=UTF-8"]
