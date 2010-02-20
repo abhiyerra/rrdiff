@@ -23,7 +23,6 @@ static VALUE rrdiff_signature(VALUE mod, VALUE old_file, VALUE sig_file)
     return Qnil;
 }
 
-
 static VALUE rrdiff_delta(VALUE mod, VALUE new_file, VALUE sig_file, VALUE delta_file)
 {
     FILE *newfile, *sigfile, *deltafile;
@@ -53,8 +52,6 @@ static VALUE rrdiff_delta(VALUE mod, VALUE new_file, VALUE sig_file, VALUE delta
     return Qnil;
 }
 
-//rs_result rs_patch_file(FILE *basis_file, FILE *delta_file, FILE *new_file, rs_stats_t *); 
-
 static VALUE rrdiff_patch(VALUE mod, VALUE old_file, VALUE delta_file, VALUE patched_file)
 {
     FILE *basisfile, *deltafile, *newfile;
@@ -75,8 +72,7 @@ static VALUE rrdiff_patch(VALUE mod, VALUE old_file, VALUE delta_file, VALUE pat
     return Qnil;
 }
 
-/* main entry point */
-void Init_rrdiff()
+void Init_rrdiff_ext()
 {
     RRDiff = rb_define_module("RRDiff");
 
