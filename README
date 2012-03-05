@@ -25,7 +25,7 @@ It will return Tempfiles.
 
     RRDiff::File.signature(oldfile) #=> <File>
 
-    RRDiff::File.delta(newfile, sigfile) #=> <File>
+    RRDiff::File.delta(sigfile, newfile) #=> <File>
 
     RRDiff::File.diff(oldfile, newfile) #=> <File>
 
