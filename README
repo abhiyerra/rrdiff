@@ -23,6 +23,10 @@ which should be equivalent to newfile.
 There is also a File interface, that you can pass File instances. 
 It will return Tempfiles.
 
+    RRDiff::File.signature(oldfile) #=> <File>
+
     RRDiff::File.delta(sigfile, newfile) #=> <File>
 
     RRDiff::File.diff(oldfile, newfile) #=> <File>
+
+    RRDiff::File.patch(oldfile, deltafile) #=> <File>
