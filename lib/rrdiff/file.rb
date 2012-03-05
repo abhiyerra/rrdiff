@@ -16,7 +16,7 @@ module RRDiff
       sfile
     end
 
-    def delta(file, sfile)
+    def delta(sfile, file)
       dfile = Tempfile.new("delfile")
       RRDiff.delta(file.path, sfile.path, dfile.path)
       dfile
