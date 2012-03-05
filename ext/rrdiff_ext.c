@@ -12,13 +12,13 @@ static VALUE rrdiff_signature(VALUE mod, VALUE old_file, VALUE sig_file)
     rs_result result;
     rs_stats_t stats;
   
-    basis = rs_file_open(StringValuePtr(old_file), "rb");
-    signature = rs_file_open(StringValuePtr(sig_file), "wb");
+    basis = fopen(StringValuePtr(old_file), "rb");
+    signature = fopen(StringValuePtr(sig_file), "wb");
 
     result = rs_sig_file(basis, signature, RS_DEFAULT_BLOCK_LEN, RS_DEFAULT_STRONG_LEN, &stats);
 
-    rs_file_close(basis);
-    rs_file_close(signature);
+    fclose(basis);
+    fclose(signature);
 
     return Qnil;
 }
@@ -31,9 +31,9 @@ static VALUE rrdiff_delta(VALUE mod, VALUE new_file, VALUE sig_file, VALUE delta
     rs_stats_t stats;
     rs_signature_t *sig;
 
-    newfile = rs_file_open(StringValuePtr(new_file), "rb");
-    sigfile = rs_file_open(StringValuePtr(sig_file), "rb");
-    deltafile = rs_file_open(StringValuePtr(delta_file), "wb");
+    newfile = fopen(StringValuePtr(new_file), "rb");
+    sigfile = fopen(StringValuePtr(sig_file), "rb");
+    deltafile = fopen(StringValuePtr(delta_file), "wb");
 
     if((result = rs_loadsig_file(sigfile, &sig, &stats)) != RS_DONE)
         return Qnil;
@@ -45,9 +45,9 @@ static VALUE rrdiff_delta(VALUE mod, VALUE new_file, VALUE sig_file, VALUE delta
     
     rs_free_sumset(sig);
 
-    rs_file_close(newfile);
-    rs_file_close(sigfile);
-    rs_file_close(deltafile);
+    fclose(newfile);
+    fclose(sigfile);
+    fclose(deltafile);
 
     return Qnil;
 }
@@ -59,15 +59,15 @@ static VALUE rrdiff_patch(VALUE mod, VALUE old_file, VALUE delta_file, VALUE pat
     rs_stats_t stats;
     rs_result result;
 
-    basisfile = rs_file_open(StringValuePtr(old_file), "rb");
-    deltafile = rs_file_open(StringValuePtr(delta_file), "rb");
-    newfile = rs_file_open(StringValuePtr(patched_file), "wb");
+    basisfile = fopen(StringValuePtr(old_file), "rb");
+    deltafile = fopen(StringValuePtr(delta_file), "rb");
+    newfile = fopen(StringValuePtr(patched_file), "wb");
 
     result = rs_patch_file(basisfile, deltafile, newfile, &stats);
 
-    rs_file_close(newfile);
-    rs_file_close(deltafile);
-    rs_file_close(basisfile);
+    fclose(newfile);
+    fclose(deltafile);
+    fclose(basisfile);
 
     return Qnil;
 }
