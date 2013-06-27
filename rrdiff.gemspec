@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name = "rrdiff"
-  s.version = "0.10.0"
+  s.version = "0.10.1"
 
   s.authors = ["Abhi Yerra"]
   s.email = %q{ykabhinav@gmail.com}
