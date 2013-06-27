@@ -9,6 +9,7 @@ Gem::Specification.new do |s|
 
   s.add_development_dependency('rake')
   s.add_development_dependency('rspec')
+  s.add_development_dependency('debugger')
 
   s.description = %q{Ruby bindings to librsync which provides rdiff.}
   s.summary = %q{Ruby bindings to librsync which provides rdiff.}

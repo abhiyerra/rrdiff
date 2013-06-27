@@ -1,4 +1,4 @@
 $: << File.dirname(__FILE__)
 
-require "rrdiff/rrdiff"
+require File.join(File.dirname(__FILE__),'..','ext','rrdiff', 'rrdiff')
 require "rrdiff/file"
