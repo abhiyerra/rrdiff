@@ -1,4 +1,4 @@
-rrdiff - Ruby bindings to librsync/rdiff.
+# rrdiff - Ruby bindings to librsync/rdiff.
 
 Lets say you have two files oldfile and newfile where newfile
 is a modified version of oldfile. We want to be able to apply
