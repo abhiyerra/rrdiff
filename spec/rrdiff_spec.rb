@@ -1,4 +1,4 @@
-require File.join(File.dirname(__FILE__),'..','ext','RRDiff')
+require File.join(File.dirname(__FILE__),'..','ext','rrdiff', 'rrdiff')
 
 describe RRDiff do
   it "should create a signature from an oldfile" do

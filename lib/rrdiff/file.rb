@@ -3,7 +3,9 @@ require "tempfile"
 module RRDiff
   module File
     # File interface to RRDiff
-    
+
+    extend self
+
     def patch(ofile, dfile)
       nfile = Tempfile.new("nfile")
       RRDiff.patch(ofile.path, dfile.path, nfile.path)
@@ -23,9 +25,9 @@ module RRDiff
     end
 
     def diff(ofile, nfile)
-    	sfile = signature(ofile)
-    	delta(sfile, nfile)
+      sfile = signature(ofile)
+      delta(sfile, nfile)
     end
-    extend self
+
   end
 end

@@ -11,7 +11,7 @@ static VALUE rrdiff_signature(VALUE mod, VALUE old_file, VALUE sig_file)
 
     rs_result result;
     rs_stats_t stats;
-  
+
     basis = fopen(StringValuePtr(old_file), "rb");
     signature = fopen(StringValuePtr(sig_file), "wb");
 
@@ -42,7 +42,7 @@ static VALUE rrdiff_delta(VALUE mod, VALUE new_file, VALUE sig_file, VALUE delta
         return Qnil;
 
     result = rs_delta_file(sig, newfile, deltafile, &stats);
-    
+
     rs_free_sumset(sig);
 
     fclose(newfile);
@@ -72,7 +72,7 @@ static VALUE rrdiff_patch(VALUE mod, VALUE old_file, VALUE delta_file, VALUE pat
     return Qnil;
 }
 
-void Init_rrdiff_ext()
+void Init_rrdiff()
 {
     RRDiff = rb_define_module("RRDiff");
 

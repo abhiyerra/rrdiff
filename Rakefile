@@ -1,49 +1,24 @@
 require 'rubygems'
 require 'rake/clean'
-require 'spec/rake/spectask'
-require 'spec/ruby'
+require 'rspec/core/rake_task'
 
-CLEAN.include '**/*.o'
-CLEAN.include "**/*.#{Config::MAKEFILE_CONFIG['DLEXT']}"
-CLEAN.include 'test/patchedfile'
-CLEAN.include 'test/deltafile'
-CLEAN.include 'test/sigfile'
-CLOBBER.include '**/Makefile'
-CLOBBER.include '**/bsdiff_config.h'
-CLOBBER.include '**/mkmf.log'
+NAME = 'rrdiff'
 
-BSDIFF_SO = "ext/bsdiff.#{Config::MAKEFILE_CONFIG['DLEXT']}"
-
-MAKECMD = ENV['MAKE_CMD'] || 'make'
-MAKEOPTS = ENV['MAKE_OPTS'] || ''
-
-desc "Test project"
-task :default => ['compile', 'test']
-
-file 'ext/Makefile' => 'ext/extconf.rb' do
-  Dir.chdir('ext') do
-    ruby "extconf.rb #{ENV['EXTCONF_OPTS']}"
+# rule to build the extension: this says
+# that the extension should be rebuilt
+# after any change to the files in ext
+file "lib/#{NAME}/#{NAME}.#{RbConfig::CONFIG['DLEXT']}" => Dir.glob("ext/#{NAME}/*{.rb,.c}") do
+  Dir.chdir("ext/#{NAME}") do
+    # this does essentially the same thing
+    # as what RubyGems does
+    ruby "extconf.rb"
+    sh "make"
   end
 end
 
-# Let make handle dependencies between c/o/so - we'll just run it.
-file BSDIFF_SO => (['ext/Makefile'] + Dir['ext/*.c'] + Dir['ext/*.h']) do
-  m = 0
-  Dir.chdir('ext') do
-    pid = system("#{MAKECMD} #{MAKEOPTS}")
-    m = $?.exitstatus
-  end
-  fail "Make failed (status #{m})" unless m == 0
-end
+CLEAN.include('ext/**/*{.o,.log,.so,.bundle}')
+CLEAN.include('ext/**/Makefile')
+CLOBBER.include('lib/**/*.so')
 
-desc "Compile the shared object"
-task :compile => [BSDIFF_SO]
-
-desc "Run the project rspec"
-task :spec do
-  Dir.chdir('test') do
-    Spec::Rake::SpecTask.new(:rrdiff) do |t|
-      t.spec_files = FileList['rrdiff_spec.rb']
-    end
-  end
-end
+RSpec::Core::RakeTask.new(:spec)
+task :default => ["lib/#{NAME}/#{NAME}.#{RbConfig::CONFIG['DLEXT']}", :spec]
