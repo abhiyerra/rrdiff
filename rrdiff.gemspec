@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |s|
-  s.name = "RRDiff"
+  s.name = "rrdiff"
   s.version = "0.10.0"
 
   s.authors = ["Abhi Yerra"]
